@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1 v-on:click="sum($event)">{{ msg }} {{ message }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -33,8 +33,41 @@
 <script>
 export default {
   name: 'HelloWorld',
+  data: () => ({
+    message: 'Hello from data!',
+    a: 2,
+    b: 4,
+    c: 0
+  }),
   props: {
-    msg: String
+    msg: String,
+    myBool: Boolean
+  },
+  methods: {
+    sum (e) {
+      // console.log(this.a + this.b)
+      console.log(e)
+    }
+  },
+  computed: {
+
+  },
+  watch: {
+    message () {
+
+    }
+  },
+  created: {
+
+  },
+  mounted: {
+
+  },
+  updated: {
+
+  },
+  beforeDestroy: {
+
   }
 }
 </script>
