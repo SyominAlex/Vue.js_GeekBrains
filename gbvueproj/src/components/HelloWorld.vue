@@ -4,10 +4,12 @@
     <input v-model.number="operand2" />
     = {{ result }}
     <div>
-      <button @click="sum">+</button>
-      <button @click="sub">-</button>
-      <button @click="div">/</button>
-      <button @click="mul">*</button>
+      <button @click="calculate('+')">+</button>
+      <button @click="calculate('-')">-</button>
+      <button @click="calculate('/')">/</button>
+      <button @click="calculate('*')">*</button>
+      <button @click="calculate('**')">**</button>
+      <button @click="calculate('%')">%</button>
     </div>
   </div>
 </template>
@@ -23,17 +25,17 @@ export default {
 
   },
   methods: {
-    sum () {
-      this.result = this.operand1 + this.operand2
-    },
-    sub () {
-      this.result = this.operand1 - this.operand2
-    },
-    div () {
-      this.result = this.operand1 / this.operand2
-    },
-    mul () {
-      this.result = this.operand1 * this.operand2
+    calculate (op) {
+      const { operand1, operand2 } = this
+      const calcOperations = {
+        '+': () => operand1 + operand2,
+        '-': () => operand1 - operand2,
+        '/': () => operand1 / operand2,
+        '*': () => operand1 * operand2,
+        '**': () => operand1 ** operand2,
+        '%': () => operand1 % operand2
+      }
+      this.result = calcOperations[op]()
     }
   },
   computed: {
